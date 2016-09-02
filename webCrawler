@@ -1,0 +1,29 @@
+my_page = "web page contents <a class='link' href='http://www.youtube.com'></a> <a href='google.com'></a> <a class='link' style='text-decoration:none' href='www.facebook.com'></a>"
+
+#Finding number of anchor links on the page
+def links_number(page):
+    links = 0
+    anchor = page.find("<a")
+    if anchor == -1:
+        return links
+    else:
+        while anchor != -1:
+            anchor = page.find("<a", anchor + 1)
+            links += 1
+    return links
+
+print links_number(my_page)
+
+href = page.find("href", anchor)
+start_url = page.find("'", href)
+end_url = page.find("'", start_url + 1)
+url = page[start_url + 1:end_url]
+
+print "debug anchor position: " + str(anchor)
+print "debug page after anchor: " + page[anchor]
+print "debug href position: " + str(href)
+print "debug page after href: " + page[href]
+print "debug start_url: " + str(start_url)
+print "debug end_url: " + str(end_url)
+
+print url
