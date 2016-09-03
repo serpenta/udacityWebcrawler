@@ -14,16 +14,23 @@ def links_number(page):
 
 print links_number(my_page)
 
-href = page.find("href", anchor)
-start_url = page.find("'", href)
-end_url = page.find("'", start_url + 1)
-url = page[start_url + 1:end_url]
+#Finding all urls (no need for links_number())
+def find_urls(page):
+    end_url = 0
+    while True:
+        anchor = page.find("<a", end_url)
+        if anchor == -1:
+            break
+        else:
+            href_pos = page.find("href", anchor)
+            start_url = page.find("'", href_pos)
+            end_url = page.find("'", start_url + 1)
+            print page[start_url + 1:end_url]
+    return
 
-print "debug anchor position: " + str(anchor)
-print "debug page after anchor: " + page[anchor]
-print "debug href position: " + str(href)
-print "debug page after href: " + page[href]
-print "debug start_url: " + str(start_url)
-print "debug end_url: " + str(end_url)
+find_urls(my_page)
 
-print url
+#href = page.find("href", anchor)
+#start_url = page.find("'", href)
+#end_url = page.find("'", start_url + 1)
+#url = page[start_url + 1:end_url]
