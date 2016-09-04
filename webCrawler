@@ -4,12 +4,11 @@ my_page = "web page contents <a class='link' href='http://www.youtube.com'></a> 
 def links_number(page):
     links = 0
     anchor = page.find("<a")
-    if anchor == -1:
-        return links
-    else:
-        while anchor != -1:
-            anchor = page.find("<a", anchor + 1)
-            links += 1
+    while True:
+        if anchor == -1:
+            break
+        anchor = page.find("<a", anchor + 1)
+        links += 1
     return links
 
 print links_number(my_page)
