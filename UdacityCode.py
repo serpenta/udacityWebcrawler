@@ -1,5 +1,3 @@
-my_page = "web page contents <a class='link' href='http://www.youtube.com'></a> <a href='google.com'></a> <a class='link' style='text-decoration:none' href='www.facebook.com'></a>"
-
 def get_next_target(page):
     anchor = page.find("<a")
     if anchor == -1:
@@ -10,3 +8,12 @@ def get_next_target(page):
     url = page[start_url + 1:end_url]
     return url, end_url
 print get_next_target
+
+def print_all_links(page):
+    while True:
+        url, endpos = get_next_target(page)
+        if url:
+            print url
+            page = page[endpos:]
+        else:
+            break
